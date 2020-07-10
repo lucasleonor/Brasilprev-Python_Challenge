@@ -1,4 +1,4 @@
-from python_challenge.setup_app import setup_app
+from python_challenge.setup.setup_app import setup_app
 
 app = setup_app()
 

@@ -1,4 +1,14 @@
 app_prefix: '/api/v1'
+
 cors:
   allow:
     - '*'
+
+db:
+  url: 'sqlite:///:memory:'
+#  uri_pattern: '{driver}://{user}:{pass}@{host}/{dbname}'
+#  driver: driver
+#  user: user
+#  pass: pass
+#  host: host:port
+#  dbname: database
