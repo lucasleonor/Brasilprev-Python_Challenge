@@ -1,3 +1,11 @@
 def remove_id(json):
-    if json.get('id') is not None:
-        del json['id']
+    remove_key(json, 'id')
+
+
+def remove_key(json, key, converter=None):
+    value = json.get(key)
+    if value is not None:
+        del json[key]
+        if converter:
+            value = converter(value)
+        return value

@@ -9,9 +9,9 @@ from python_challenge.service.customer_service import CustomerService
 
 namespace = Namespace('customers')
 customer_flask_model = namespace.model('Customer', {
-    'id': fields.Integer,
-    'name': fields.String,
-    'document': fields.String
+    'id': fields.Integer(),
+    'name': fields.String(),
+    'document': fields.String()
 })
 
 
@@ -50,7 +50,7 @@ class CustomerController(Resource):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.schema = CustomerSchema()
-        self.dao = CustomerService()
+        self.service = CustomerService()
 
     @namespace.expect(customer_flask_model)
     @namespace.marshal_with(customer_flask_model, code=201, description=code[201])
@@ -59,4 +59,4 @@ class CustomerController(Resource):
         json = request.json
         remove_id(json)
         project = self.schema.load(json)
-        return self.dao.register_customer(project), 201
+        return self.service.register_customer(project), 201
