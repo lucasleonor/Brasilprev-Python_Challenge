@@ -28,10 +28,5 @@ class CustomerService:
         self.dao.update(customer)
 
     def register_customer(self, customer: Customer) -> Customer:
-        try:
-            customer.active = True
-            return self.dao.add(customer)
-        except IntegrityError as e:
-            if e.orig.args[0] == '23000':
-                raise BadRequest('Violation of Unique Key')
-            raise e
+        customer.active = True
+        return self.dao.add(customer)

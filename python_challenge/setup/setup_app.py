@@ -1,5 +1,7 @@
 from flask import Flask
 
+from python_challenge.helpers.exception_handler import handle_error
+
 
 def setup_app():
     app = Flask(__name__)
@@ -13,4 +15,5 @@ def setup_app():
     from python_challenge.setup.setup_db import setup_db
     setup_db(app)
 
+    app.register_error_handler(Exception, handle_error)
     return app
