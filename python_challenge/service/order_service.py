@@ -13,6 +13,7 @@ class OrderService:
         self.customer_service = CustomerService()
 
     def find_all(self, page: int, per_page: int, customer_id: int, order: Order, order_by: str) -> Pagination:
+        self.customer_service.find_by_id(customer_id)
         return self.dao.get_all(customer_id, page, per_page, order, order_by)
 
     def find_by_id(self, customer_id: int, order_id: int) -> Order:
