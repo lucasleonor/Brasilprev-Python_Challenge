@@ -7,7 +7,7 @@ from python_challenge.helpers.status_code import code
 from python_challenge.model.product import ProductSchema
 from python_challenge.service.product_service import ProductService
 
-namespace = Namespace('products')
+namespace = Namespace('Products', path='products')
 product_flask_model = namespace.model('Product', {
     'id': fields.Integer(),
     'name': fields.String(),

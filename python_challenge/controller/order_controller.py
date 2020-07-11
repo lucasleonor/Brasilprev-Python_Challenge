@@ -7,7 +7,7 @@ from python_challenge.helpers.status_code import code
 from python_challenge.model.order import OrderSchema
 from python_challenge.service.order_service import OrderService
 
-namespace = Namespace('orders', path='customers/<int:customer_id>/orders')
+namespace = Namespace('Orders', path='customers/<int:customer_id>/orders')
 order_item_flask_model = namespace.model('OrderItem', {
     'amount': fields.Integer(),
     'product_id': fields.Integer()

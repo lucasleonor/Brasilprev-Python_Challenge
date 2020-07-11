@@ -7,7 +7,7 @@ from python_challenge.helpers.status_code import code
 from python_challenge.model.customer import CustomerSchema
 from python_challenge.service.customer_service import CustomerService
 
-namespace = Namespace('customers')
+namespace = Namespace('Customers',path='customers')
 customer_flask_model = namespace.model('Customer', {
     'id': fields.Integer(),
     'name': fields.String(),
