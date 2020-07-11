@@ -6,8 +6,15 @@ from python_challenge.controller import customer_controller, product_controller,
 
 
 def setup_api(app):
+    authorizations = {
+        'Bearer Auth': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization'
+        },
+    }
     blueprint = Blueprint('api', __name__, url_prefix=app_prefix)
-    api = Api(blueprint)
+    api = Api(blueprint, security='Bearer Auth', authorizations=authorizations)
     app.register_blueprint(blueprint)
 
     api.add_namespace(customer_controller.namespace)

@@ -3,6 +3,7 @@ from flask_restplus import Namespace, Resource, fields
 
 from python_challenge.controller import remove_id, remove_key
 from python_challenge.helpers import response_manager
+from python_challenge.helpers.decorators.auth import auth
 from python_challenge.helpers.status_code import code
 from python_challenge.model.product import ProductSchema
 from python_challenge.service.product_service import ProductService
@@ -41,6 +42,7 @@ class ProductControllerId(Resource):
     @namespace.expect(product_flask_model)
     @namespace.marshal_with(product_flask_model)
     @namespace.doc(responses=response_manager.update)
+    @auth
     def put(self, product_id):
         json = request.json
         remove_id(json)
@@ -70,6 +72,7 @@ class ProductController(Resource):
     @namespace.expect(product_flask_model)
     @namespace.marshal_with(product_flask_model, code=201, description=code[201])
     @namespace.doc(responses=response_manager.create)
+    @auth
     def post(self):
         json = request.json
         remove_id(json)

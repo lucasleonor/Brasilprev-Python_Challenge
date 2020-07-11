@@ -3,6 +3,7 @@ from flask_restplus import Namespace, Resource, fields
 
 from python_challenge.controller import remove_id
 from python_challenge.helpers import response_manager
+from python_challenge.helpers.decorators.auth import auth
 from python_challenge.helpers.status_code import code
 from python_challenge.model.customer import CustomerSchema
 from python_challenge.service.customer_service import CustomerService
@@ -17,6 +18,7 @@ customer_flask_model = namespace.model('Customer', {
 
 @namespace.route('/<int:customer_id>')
 @namespace.doc(responses=response_manager.common_errors)
+@auth
 class CustomerControllerId(Resource):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -45,6 +47,7 @@ class CustomerControllerId(Resource):
 
 @namespace.route('')
 @namespace.doc(responses=response_manager.common_errors)
+@auth
 class CustomerController(Resource):
 
     def __init__(self, *args, **kwargs):

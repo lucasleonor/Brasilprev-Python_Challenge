@@ -3,6 +3,7 @@ from flask_restplus import Namespace, Resource, fields
 
 from python_challenge.controller import remove_id, remove_key
 from python_challenge.helpers import response_manager
+from python_challenge.helpers.decorators.auth import auth
 from python_challenge.helpers.status_code import code
 from python_challenge.model.order import OrderSchema
 from python_challenge.service.order_service import OrderService
@@ -32,6 +33,7 @@ pagination_params = {'page': 'Current Page', 'per_page': 'Number of items per pa
 
 @namespace.route('/<int:order_id>')
 @namespace.doc(responses=response_manager.common_errors)
+@auth
 class OrderControllerId(Resource):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -51,6 +53,7 @@ class OrderControllerId(Resource):
 
 @namespace.route('')
 @namespace.doc(responses=response_manager.common_errors)
+@auth
 class OrderController(Resource):
 
     def __init__(self, *args, **kwargs):
