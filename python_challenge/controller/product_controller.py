@@ -44,7 +44,7 @@ class ProductControllerId(Resource):
     def put(self, product_id):
         json = request.json
         remove_id(json)
-        product = self.schema.load(json)
+        product = self.schema.load(json, partial=True)
         return self.service.update(product, product_id)
 
 
@@ -73,5 +73,5 @@ class ProductController(Resource):
     def post(self):
         json = request.json
         remove_id(json)
-        project = self.schema.load(json)
+        project = self.schema.load(json, partial=True)
         return self.service.register_product(project), 201

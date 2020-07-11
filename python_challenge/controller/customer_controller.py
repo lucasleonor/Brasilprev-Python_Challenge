@@ -34,7 +34,7 @@ class CustomerControllerId(Resource):
     def put(self, customer_id):
         json = request.json
         remove_id(json)
-        customer = self.schema.load(json)
+        customer = self.schema.load(json, partial=True)
         return self.service.update(customer, customer_id)
 
     @namespace.doc(responses=response_manager.delete)
@@ -58,5 +58,5 @@ class CustomerController(Resource):
     def post(self):
         json = request.json
         remove_id(json)
-        project = self.schema.load(json)
+        project = self.schema.load(json, partial=True)
         return self.service.register_customer(project), 201
