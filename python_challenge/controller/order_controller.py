@@ -30,9 +30,12 @@ pagination_model = namespace.model('OrderPagination', {
 pagination_params = {'page': 'Current Page', 'per_page': 'Number of items per page', 'order_by': 'order by',
                      'id': 'Order id', 'delivery_address': 'Order delivery address', 'status': 'Order status'}
 
+order_common_errors = dict(response_manager.common_errors)
+order_common_errors[404] = code[404]
+
 
 @namespace.route('/<int:order_id>')
-@namespace.doc(responses=response_manager.common_errors)
+@namespace.doc(responses=order_common_errors)
 @auth
 class OrderControllerId(Resource):
     def __init__(self, *args, **kwargs):
@@ -52,7 +55,7 @@ class OrderControllerId(Resource):
 
 
 @namespace.route('')
-@namespace.doc(responses=response_manager.common_errors)
+@namespace.doc(responses=order_common_errors)
 @auth
 class OrderController(Resource):
 
