@@ -14,7 +14,11 @@ def setup_api(app):
         },
     }
     blueprint = Blueprint('api', __name__, url_prefix=app_prefix)
-    api = Api(blueprint, security='Bearer Auth', authorizations=authorizations)
+    api = Api(blueprint, title='Online Store - Python Challenge',
+              description='REST API for a virtual store that features Clients, Products and Orders.\n'
+                          'To get passed the mock authentication just send anything in the Authorization.'
+                          'The products list methods are not protected, so anyone can browse through them',
+              security='Bearer Auth', authorizations=authorizations)
     app.register_blueprint(blueprint)
 
     api.add_namespace(customer_controller.namespace)
